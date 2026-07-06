@@ -15,12 +15,17 @@ revisit one, surface it and ask — don't just change it.
 | Decision | Value |
 |---|---|
 | WBGT source | NWS-native only, no Liljegren/pywbgt fallback |
-| Workload assumption | Moderate, acclimatized (ACGIH table) |
+| Workload assumption | Moderate, acclimatized (ACGIH table) — kept as a Tier-2 supporting detail, not the primary framing |
 | Umbrella threshold | 30% PoP (minimax-regret, not 50/50) |
 | Rain look-ahead window | 6 hours (matches update cadence) |
 | Update cadence | Every 6 hours (`cron: 0 */6 * * *`) |
 | UV data source | EPA Envirofacts, by ZIP `23221` |
 | Architecture | Shared JSON (`data/latest.json`) via GitHub Actions commit, read by TRMNL Polling + Scriptable — not a webhook |
+| Design framework | Decisions-first daily briefing, per `Eos/docs/WEATHER_BRIEFING.md` (2026-07-06). Tier 1 verdict + gated Tier 2 chips, replacing the original 3-card dashboard layout. |
+| WBGT flag cutoffs | Military TB MED 507: Green 80–84.9°F, Yellow 85–87.9°F, Red 88–89.9°F, Black ≥90°F. `white` (<80°F) is our own addition below the standard's floor — not official. |
+| Windy threshold | 15 mph sustained or 25 mph gust (user-supplied) — drives windbreaker signal and umbrella→raincoat flip |
+| UV show gate | `uv_index >= 3` (reuses existing `UV_BANDS` first threshold) |
+| Feels-like / air window | Local calendar day, clipped to now (not the 6h rain lookahead) |
 
 ## Tested (logic only, in-sandbox)
 
@@ -51,6 +56,25 @@ revisit one, surface it and ask — don't just change it.
       work-rest, 69% PoP → bring umbrella, UV 10 → minimize exposure).
 - [ ] Grayscale severity styling in `templates/full.liquid` — still only
       logic-verified, not seen on real TRMNL hardware.
+
+## 2026-07-06 redesign: daily weather briefing
+
+Repurposed for Eos/Helios's decisions-first briefing design (see
+`Eos/docs/WEATHER_BRIEFING.md`). `wbgt_trmnl.py` now also computes wind
+(`compute_wind_answer`), feels-like (`compute_feels_like_answer`), air
+high/low (`compute_air_answer`), a WBGT flag (`classify_wbgt_flag`), and
+a synthesized `verdict` line (`compute_verdict`) — see README.md "Output
+schema" and "Design decisions" for the full breakdown and caveats
+(TB MED 507 `white` tier, no qualitative feels-like descriptor, no
+computed time-of-day in the WBGT clause). All four templates
+(`full`/`half_vertical`/`half_horizontal`/`quadrant`) rewritten around
+Tier 1 (verdict) + Tier 2 (gated chips), replacing the original 3-card
+layout.
+
+Verified locally (venv, `python-liquid`) before pushing: script runs
+end-to-end against real NWS/EPA data, all four templates parse and
+render against that real output. Not yet verified: live GitHub Actions
+run with the new script, or the new layout on real TRMNL hardware.
 
 ## Remaining setup steps, in order
 

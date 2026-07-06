@@ -1,67 +1,51 @@
 <!--
-  Quadrant (400x240 physical): narrowest and shortest view in the set.
-  Same three-card stack as full/half_vertical, but condensed hard --
-  label+detail collapsed onto one line each, footer timestamp dropped
-  entirely (lowest-priority element, no room left for it here).
+  Quadrant (400x240 physical): narrowest and shortest view. Verdict
+  condensed further; footer timestamp dropped entirely for space, same
+  tradeoff as the previous quadrant design.
 -->
 
-<div class="view view--quadrant" style="width: 100%; height: 100%; box-sizing: border-box; padding: 10px 12px; font-family: sans-serif; display: flex; flex-direction: column; gap: 6px;">
+{% assign flag = work.flag %}
+{% if flag == "black" %}
+  {% assign f_bg = "#000000" %}{% assign f_fg = "#ffffff" %}
+{% elsif flag == "red" %}
+  {% assign f_bg = "#595959" %}{% assign f_fg = "#ffffff" %}
+{% elsif flag == "yellow" %}
+  {% assign f_bg = "#a6a6a6" %}{% assign f_fg = "#000000" %}
+{% elsif flag == "green" %}
+  {% assign f_bg = "#d9d9d9" %}{% assign f_fg = "#000000" %}
+{% else %}
+  {% assign f_bg = "#ffffff" %}{% assign f_fg = "#000000" %}
+{% endif %}
 
-  <!-- WORK OUTSIDE -->
-  {% assign wmin = work.minutes_per_hour %}
-  {% if wmin == 60 %}
-    {% assign w_bg = "#ffffff" %}{% assign w_fg = "#000000" %}{% assign w_border = "2px solid #000" %}
-  {% elsif wmin == 45 %}
-    {% assign w_bg = "#d9d9d9" %}{% assign w_fg = "#000000" %}{% assign w_border = "none" %}
-  {% elsif wmin == 30 %}
-    {% assign w_bg = "#a6a6a6" %}{% assign w_fg = "#000000" %}{% assign w_border = "none" %}
-  {% elsif wmin == 15 %}
-    {% assign w_bg = "#595959" %}{% assign w_fg = "#ffffff" %}{% assign w_border = "none" %}
-  {% else %}
-    {% assign w_bg = "#000000" %}{% assign w_fg = "#ffffff" %}{% assign w_border = "none" %}
-  {% endif %}
+<div class="view view--quadrant" style="width: 100%; height: 100%; box-sizing: border-box; padding: 12px 14px; font-family: sans-serif; display: flex; flex-direction: column; gap: 8px;">
 
-  <div style="flex: 1; background: {{ w_bg }}; color: {{ w_fg }}; border: {{ w_border }}; padding: 6px 10px; display: flex; flex-direction: column; justify-content: center;">
-    <div style="font-size: 8px; letter-spacing: 0.05em; opacity: 0.75; text-transform: uppercase;">
-      Work Outside
-    </div>
-    {% if work %}
-      <div style="font-size: 18px; font-weight: 700; line-height: 1.1;">
-        {% if wmin == 60 %}Work freely
-        {% elsif wmin == 0 %}Don't
-        {% else %}{{ wmin }} min/hr{% endif %}
-      </div>
-    {% else %}
-      <div style="font-size: 13px; opacity: 0.6;">No data</div>
-    {% endif %}
+  <div style="font-size: 19px; font-weight: 700; line-height: 1.15; flex: 1; display: flex; align-items: center;">
+    {{ verdict }}
   </div>
 
-  <!-- RAIN -->
-  <div style="flex: 1; border: 1px solid #000; padding: 6px 10px; display: flex; flex-direction: column; justify-content: center;">
-    <div style="font-size: 8px; letter-spacing: 0.05em; opacity: 0.75; text-transform: uppercase;">
-      Rain, {{ rain.window_hours }}h
+  <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 6px;">
+    <div style="border: 1px solid #000; padding: 3px 8px; font-size: 11px;">
+      Feels {{ feels_like.low_f | round }}–{{ feels_like.high_f | round }}&deg;F
     </div>
-    {% if rain %}
-      <div style="font-size: 14px; font-weight: 700;">
-        {% if rain.bring_umbrella %}Bring umbrella{% else %}No umbrella{% endif %}
-        <span style="font-weight: 400; opacity: 0.8; font-size: 11px;">({{ rain.max_pop_pct | round }}%)</span>
+    {% if flag != "white" %}
+      <div style="background: {{ f_bg }}; color: {{ f_fg }}; padding: 3px 8px; font-size: 11px;">
+        WBGT {{ flag | capitalize }}
       </div>
-    {% else %}
-      <div style="font-size: 13px; opacity: 0.6;">No data</div>
     {% endif %}
-  </div>
-
-  <!-- SUN -->
-  <div style="flex: 1; border: 1px solid #000; padding: 6px 10px; display: flex; flex-direction: column; justify-content: center;">
-    <div style="font-size: 8px; letter-spacing: 0.05em; opacity: 0.75; text-transform: uppercase;">
-      Sun Protection
-    </div>
-    {% if sun %}
-      <div style="font-size: 13px; font-weight: 700;">
-        {{ sun.label }} <span style="font-weight: 400; opacity: 0.8; font-size: 11px;">(UV {{ sun.uv_index | round }})</span>
+    {% if wind.windy %}
+      <div style="border: 1px solid #000; padding: 3px 8px; font-size: 11px;">
+        Windy
       </div>
-    {% else %}
-      <div style="font-size: 13px; opacity: 0.6;">No data</div>
+    {% endif %}
+    {% if sun.show %}
+      <div style="border: 1px solid #000; padding: 3px 8px; font-size: 11px;">
+        UV {{ sun.uv_index | round }}
+      </div>
+    {% endif %}
+    {% if rain.action != "none" %}
+      <div style="border: 1px solid #000; padding: 3px 8px; font-size: 11px;">
+        {{ rain.max_pop_pct | round }}% rain
+      </div>
     {% endif %}
   </div>
 

@@ -1,79 +1,55 @@
 <!--
   Half-vertical (400x480 physical): same height as full, half the width.
-  Same three-card stack and severity logic as full.liquid, sized down for
-  the narrower column so nothing wraps awkwardly or overflows.
+  Same verdict + gated-chip structure, chips wrap to their own lines more
+  readily at this width -- expected, not a bug.
 -->
 
-<div class="view view--half_vertical" style="width: 100%; height: 100%; box-sizing: border-box; padding: 16px; font-family: sans-serif; display: flex; flex-direction: column; gap: 14px;">
+{% assign flag = work.flag %}
+{% if flag == "black" %}
+  {% assign f_bg = "#000000" %}{% assign f_fg = "#ffffff" %}
+{% elsif flag == "red" %}
+  {% assign f_bg = "#595959" %}{% assign f_fg = "#ffffff" %}
+{% elsif flag == "yellow" %}
+  {% assign f_bg = "#a6a6a6" %}{% assign f_fg = "#000000" %}
+{% elsif flag == "green" %}
+  {% assign f_bg = "#d9d9d9" %}{% assign f_fg = "#000000" %}
+{% else %}
+  {% assign f_bg = "#ffffff" %}{% assign f_fg = "#000000" %}
+{% endif %}
 
-  <!-- WORK OUTSIDE -->
-  {% assign wmin = work.minutes_per_hour %}
-  {% if wmin == 60 %}
-    {% assign w_bg = "#ffffff" %}{% assign w_fg = "#000000" %}{% assign w_border = "2px solid #000" %}
-  {% elsif wmin == 45 %}
-    {% assign w_bg = "#d9d9d9" %}{% assign w_fg = "#000000" %}{% assign w_border = "none" %}
-  {% elsif wmin == 30 %}
-    {% assign w_bg = "#a6a6a6" %}{% assign w_fg = "#000000" %}{% assign w_border = "none" %}
-  {% elsif wmin == 15 %}
-    {% assign w_bg = "#595959" %}{% assign w_fg = "#ffffff" %}{% assign w_border = "none" %}
-  {% else %}
-    {% assign w_bg = "#000000" %}{% assign w_fg = "#ffffff" %}{% assign w_border = "none" %}
-  {% endif %}
+<div class="view view--half_vertical" style="width: 100%; height: 100%; box-sizing: border-box; padding: 20px; font-family: sans-serif; display: flex; flex-direction: column; gap: 20px;">
 
-  <div style="background: {{ w_bg }}; color: {{ w_fg }}; border: {{ w_border }}; padding: 14px 16px;">
-    <div style="font-size: 11px; letter-spacing: 0.06em; opacity: 0.75; text-transform: uppercase;">
-      Work Outside
+  <div style="font-size: 32px; font-weight: 700; line-height: 1.2;">
+    {{ verdict }}
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <div style="border: 1px solid #000; padding: 8px 14px; font-size: 15px;">
+      Feels {{ feels_like.low_f | round }}–{{ feels_like.high_f | round }}&deg;F
     </div>
-    {% if work %}
-      <div style="font-size: 30px; font-weight: 700; line-height: 1.1;">
-        {% if wmin == 60 %}Work freely
-        {% elsif wmin == 0 %}Don't
-        {% else %}{{ wmin }} min/hr{% endif %}
+    {% if flag != "white" %}
+      <div style="background: {{ f_bg }}; color: {{ f_fg }}; padding: 8px 14px; font-size: 15px;">
+        WBGT {{ flag | capitalize }} ({{ work.wbgt_f | round }}&deg;F)
       </div>
-      <div style="font-size: 13px; opacity: 0.8; margin-top: 2px;">
-        WBGT {{ work.wbgt_f | round }}&deg;F
+    {% endif %}
+    {% if wind.windy %}
+      <div style="border: 1px solid #000; padding: 8px 14px; font-size: 15px;">
+        Windy, gusts {{ wind.gust_mph | round }}mph
       </div>
-    {% else %}
-      <div style="font-size: 18px; opacity: 0.6;">No data</div>
+    {% endif %}
+    {% if sun.show %}
+      <div style="border: 1px solid #000; padding: 8px 14px; font-size: 15px;">
+        UV {{ sun.uv_index | round }}
+      </div>
+    {% endif %}
+    {% if rain.action != "none" %}
+      <div style="border: 1px solid #000; padding: 8px 14px; font-size: 15px;">
+        {{ rain.max_pop_pct | round }}% rain{% if rain.window_label %}, {{ rain.window_label }}{% endif %}
+      </div>
     {% endif %}
   </div>
 
-  <!-- RAIN -->
-  <div style="border: 1px solid #000; padding: 12px 16px;">
-    <div style="font-size: 11px; letter-spacing: 0.06em; opacity: 0.75; text-transform: uppercase;">
-      Rain, Next {{ rain.window_hours }}h
-    </div>
-    {% if rain %}
-      <div style="font-size: 22px; font-weight: 700; margin-top: 2px;">
-        {% if rain.bring_umbrella %}Bring umbrella{% else %}No umbrella needed{% endif %}
-      </div>
-      <div style="font-size: 13px; opacity: 0.8;">
-        {{ rain.max_pop_pct | round }}% chance
-        {% if rain.frozen_only %}&middot; snow, not rain{% endif %}
-      </div>
-    {% else %}
-      <div style="font-size: 18px; opacity: 0.6;">No data</div>
-    {% endif %}
-  </div>
-
-  <!-- SUN -->
-  <div style="border: 1px solid #000; padding: 12px 16px;">
-    <div style="font-size: 11px; letter-spacing: 0.06em; opacity: 0.75; text-transform: uppercase;">
-      Sun Protection
-    </div>
-    {% if sun %}
-      <div style="font-size: 20px; font-weight: 700; margin-top: 2px;">
-        {{ sun.label }}
-      </div>
-      <div style="font-size: 13px; opacity: 0.8;">
-        UV Index {{ sun.uv_index | round }}
-      </div>
-    {% else %}
-      <div style="font-size: 18px; opacity: 0.6;">No data</div>
-    {% endif %}
-  </div>
-
-  <div style="font-size: 10px; opacity: 0.5;">
+  <div style="font-size: 11px; opacity: 0.5; margin-top: auto;">
     updated {{ generated_at | date: "%-I:%M %p" }}
   </div>
 </div>

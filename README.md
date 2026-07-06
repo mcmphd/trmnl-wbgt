@@ -1,15 +1,48 @@
 # Outdoor Conditions: TRMNL + phone widget
 
-Answers three questions, not a metric:
+A daily weather briefing: a synthesized verdict line, not a dashboard.
+Design follows `Eos/docs/WEATHER_BRIEFING.md` (the Eos/Helios weather
+briefing draft) — organized around the **decisions** it answers, gated so
+a metric only appears once it crosses a line:
 
-1. **Should I work outside, and for how long?** (WBGT, NWS-native only)
-2. **Do I need an umbrella?** (NWS precipitation probability + type)
-3. **Do I need sun protection?** (EPA UV Index)
+| Decision | Inputs |
+|---|---|
+| Hydrate / limit exertion | WBGT (flag + value), NWS-native only |
+| Umbrella **or** raincoat | rain probability + type + wind |
+| Windbreaker / layers | wind gusts |
+| Sunscreen / hat | UV Index (EPA), gated to high+ only |
+| What to wear | feels-like range (NWS `apparentTemperature`) |
 
 Runs on GitHub Actions every 6 hours, writes one JSON file, committed back
 to the repo. TRMNL's Polling strategy and a Scriptable phone widget both
 read that same file directly — one computed value, two displays, no drift
 between them, no webhook, no secret UUID to manage.
+
+## Output schema
+
+```jsonc
+{
+  "verdict": "Bring an umbrella (5pm–11pm); Minimize exposure 10am-4pm.",
+  "work": { "wbgt_f": 85.0, "flag": "yellow", "label": "25% work / 75% rest",
+            "minutes_per_hour": 15 },
+  "rain": { "max_pop_pct": 68, "action": "umbrella", "window_label": "5pm–11pm",
+            "frozen_only": false, "window_hours": 6 },
+  "wind": { "sustained_mph": 3, "gust_mph": 8, "windy": false, "window_hours": 6 },
+  "feels_like": { "low_f": 83, "high_f": 100 },
+  "air": { "high_f": 94, "low_f": 72 },
+  "sun": { "uv_index": 10.0, "label": "Minimize exposure 10am-4pm", "show": true },
+  "generated_at": "2026-07-06T20:23:12+00:00"
+}
+```
+
+`verdict` is Tier 1 — the imperative headline, synthesized once in Python
+(single source of truth, not duplicated Liquid logic across four
+templates). Everything else is Tier 2 — supporting detail, each gated on
+its own threshold. `rain.action` is `"none"`, `"umbrella"`, or
+`"raincoat"` (raincoat when rain is likely **and** windy). `work.flag` is
+`white`/`green`/`yellow`/`red`/`black`; see "WBGT flag cutoffs" below for
+an important caveat on the `white` tier. `sun.show` and `wind.windy` gate
+whether their Tier-2 chip renders at all.
 
 ## Status: tested where it can be, unverified where it can't
 
@@ -93,12 +126,11 @@ function line(text, size, bold) {
   t.font = bold ? Font.boldSystemFont(size) : Font.systemFont(size);
 }
 
-line(data.work?.minutes_per_hour === 60 ? "Work freely"
-     : data.work?.minutes_per_hour === 0 ? "Don't work outside"
-     : `${data.work?.minutes_per_hour ?? "?"} min/hr`, 20, true);
+line(data.verdict ?? "No data", 16, true);
 w.addSpacer(6);
-line(data.rain?.bring_umbrella ? "☔ Bring umbrella" : "No umbrella needed", 14, false);
-line(data.sun?.label ?? "No data", 14, false);
+if (data.feels_like) {
+  line(`Feels ${Math.round(data.feels_like.low_f)}–${Math.round(data.feels_like.high_f)}°F`, 13, false);
+}
 
 Script.setWidget(w);
 Script.complete();
@@ -146,3 +178,39 @@ misclassifies a real snow day, that's why.
 **Every answer fails independently.** A dead EPA endpoint doesn't blank
 the umbrella call, and a dead NWS endpoint doesn't blank sun protection.
 Each keeps its last committed value until its own next successful fetch.
+The verdict line is re-synthesized every run from whatever's currently in
+the result — a mix of fresh and stale answers — rather than being gated
+on every input succeeding this run.
+
+**WBGT flag cutoffs — Military TB MED 507, with one caveat.** Green
+80–84.9°F, Yellow 85–87.9°F, Red 88–89.9°F, Black ≥90°F is the real
+published standard. The `white` tier below 80°F is **not** part of the
+standard — I added it myself so there's a "nothing to report" bucket
+below Green, which is a common practical extension but shouldn't be
+read as official. `work.flag == "white"` is the only flag value that
+suppresses the WBGT Tier-2 chip.
+
+**"Windy" is 15 mph sustained or 25 mph gust, user-supplied.** Feeds two
+decisions: the windbreaker/layers signal, and flipping the rain call from
+umbrella to raincoat. Both use the same wind reading over the same
+6-hour lookahead window as the rain answer, rather than two separate
+wind windows.
+
+**Feels-like and air high/low span "the rest of today," not the 6-hour
+lookahead.** NWS already publishes `apparentTemperature` (feels-like,
+folds in humidity and wind chill — confirmed live, no derivation needed)
+and daily `maxTemperature`/`minTemperature` layers. Both are windowed to
+the local calendar day (via the timezone NWS returns for the gridpoint),
+clipped to now, so the range narrows as the day goes on rather than
+re-showing hours that have already passed.
+
+**Verdict synthesis is a simple, capped rule, not NLG.** Priority order:
+WBGT flag (red/black only) > rain action > windy > sun. At most two
+clauses render, joined with "; ". Two things it deliberately does *not*
+do, for lack of a supplied threshold: it never asserts a qualitative
+"cool"/"hot" descriptor (the design doc's example verdict says "windy and
+cool" — only "windy" is asserted here, since only that threshold was
+given), and it doesn't compute a time-of-day like "midday" for the WBGT
+clause (the doc's other example says "WBGT red midday" — this only
+reports the flag itself). If you want either of those, they need their
+own threshold decisions first, same as the flag cutoffs did.
