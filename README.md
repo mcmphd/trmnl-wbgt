@@ -63,8 +63,17 @@ doesn't match that pattern, hard-code it directly in that function.
 4. **TRMNL plugin: Polling, not Webhook.** Strategy = Polling, Polling URL
    = the raw GitHub URL for `data/latest.json`, e.g.
    `https://raw.githubusercontent.com/USER/REPO/main/data/latest.json`,
-   refresh interval = 360 (6 hours — matches the cron exactly). Paste
-   `templates/full.liquid` into the markup editor.
+   refresh interval = 360 (6 hours — matches the cron exactly). The markup
+   editor has a separate tab per layout size — paste the matching file
+   into each:
+   - Full (800x480) → `templates/full.liquid`
+   - Half horizontal (800x240) → `templates/half_horizontal.liquid`
+   - Half vertical (400x480) → `templates/half_vertical.liquid`
+   - Quadrant (400x240) → `templates/quadrant.liquid`
+
+   All four use the same severity logic (grayscale fill on the
+   work-outside card, keyed to `minutes_per_hour`) and the same JSON
+   fields — only the layout and font sizes change per size.
 5. **Phone widget (optional):** see below.
 
 ## Phone widget via Scriptable
