@@ -1,0 +1,52 @@
+name: Update outdoor-conditions JSON
+
+on:
+  schedule:
+    # Every 6 hours. This matches TRMNL's Polling refresh_interval options
+    # (15/60/360/720/1440 min) -- 360 = 6 hours exactly, so the plugin
+    # never polls a stale gap or misses a fresh write.
+    - cron: "0 */6 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write  # needed to commit data/latest.json back to the repo
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Compute and write latest.json
+        id: compute
+        env:
+          NWS_USER_AGENT: ${{ secrets.NWS_USER_AGENT }}
+          WBGT_LAT: ${{ vars.WBGT_LAT }}
+          WBGT_LON: ${{ vars.WBGT_LON }}
+          WBGT_ZIP: ${{ vars.WBGT_ZIP }}
+        run: python wbgt_trmnl.py
+        continue-on-error: true  # commit whatever succeeded even on partial failure
+
+      - name: Commit updated data
+        run: |
+          git config user.name "wbgt-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/latest.json
+          git diff --staged --quiet || git commit -m "Update outdoor conditions"
+          git push
+
+      - name: Fail the run if any answer failed to update
+        if: steps.compute.outcome == 'failure'
+        run: |
+          echo "One or more answers failed to update this run -- see the" \
+               "'Compute and write latest.json' step log above. Stale" \
+               "last-known-good values were kept and still committed."
+          exit 1
