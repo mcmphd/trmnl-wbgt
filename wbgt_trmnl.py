@@ -205,11 +205,28 @@ def classify_wbgt_flag(wbgt_f: float) -> str:
 
 
 def compute_work_answer(grid: dict, now: dt.datetime) -> dict:
-    wbgt_c = _value_at(grid.get("wetBulbGlobeTemperature"), now)
+    layer = grid.get("wetBulbGlobeTemperature")
+    if not layer or not layer.get("values"):
+        # Distinct from a transient fetch gap (raised below): the layer
+        # itself is absent, which is how NWS is expected to behave in the
+        # off-season when heat stress isn't a concern -- not verified
+        # against a real winter response yet (built in July). Report an
+        # explicit "not reported" state immediately rather than silently
+        # preserving a months-old stale flag from the prior season.
+        return {
+            "wbgt_f": None,
+            "flag": "white",
+            "label": "Not reported this season",
+            "minutes_per_hour": None,
+            "reported": False,
+            "as_of": now.isoformat(),
+        }
+
+    wbgt_c = _value_at(layer, now)
     if wbgt_c is None:
         raise RuntimeError(
-            "wetBulbGlobeTemperature not populated for this gridpoint/time "
-            "-- no fallback by design."
+            "wetBulbGlobeTemperature layer present but no value covers "
+            "'now' -- treating as a transient gap, not off-season absence."
         )
     wbgt_f = c_to_f(wbgt_c)
     label, minutes = classify_work(wbgt_f)
@@ -218,6 +235,7 @@ def compute_work_answer(grid: dict, now: dt.datetime) -> dict:
         "flag": classify_wbgt_flag(wbgt_f),
         "label": label,
         "minutes_per_hour": minutes,
+        "reported": True,
         "as_of": now.isoformat(),
     }
 
