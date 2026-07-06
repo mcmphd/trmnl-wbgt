@@ -31,44 +31,48 @@ revisit one, surface it and ask — don't just change it.
 - All three failure-isolation paths in `run()`: NWS down, EPA down, both
   up — confirmed stale values survive untouched, nothing goes blank
 
-## NOT tested — needs a real environment
+## Verified live, 2026-07-06 (Claude Code, not sandbox-restricted)
 
-- [ ] **Check 1**: Is `wetBulbGlobeTemperature` actually populated for
-      your real grid cell? (`api.weather.gov` blocked automated fetch
-      from the sandbox.) Run the curl in README.md "Check 1" for your
-      *real* lat/lon, not the Richmond-center placeholder still in the
-      code.
-- [ ] **Check 2**: Does `_find_uv_value()`'s defensive key-scan actually
-      match the EPA UV JSON response's real field name? Run the curl in
-      README.md "Check 2" for ZIP 23221. If it returns `None` every run
-      in practice, hard-code the real key.
-- [ ] Does the `weather` layer's condition strings actually match the
-      `FROZEN_ONLY_KEYWORDS`/`LIQUID_KEYWORDS` sets in
-      `_is_frozen_only()`? Spot-check against a real winter forecast.
-- [ ] Grayscale severity styling in `templates/full.liquid` — verified
-      correct *logic* (which color maps to which `minutes_per_hour`), not
-      verified visually on real TRMNL hardware.
+- [x] **Check 1**: `wetBulbGlobeTemperature` is populated for the real
+      grid cell (AKQ/46,77, Richmond VA). Confirmed via live curl —
+      values in the 23–30°C range for today.
+- [x] **Check 2**: EPA UV response field is `UV_INDEX` (e.g.
+      `{"ZIP_CODE":"23221",...,"UV_INDEX":"10",...}`). Matches
+      `_find_uv_value()`'s defensive scan (`"uv" in key and "index" in
+      key`) without any hard-coding needed.
+- [x] `weather` layer condition strings use snake_case tokens
+      (`rain_showers`, `thunderstorms`) — substring matching in
+      `_is_frozen_only()` against `LIQUID_KEYWORDS`/`FROZEN_ONLY_KEYWORDS`
+      works correctly against real values. Only liquid-precip tokens seen
+      so far (July); frozen-token matching (`snow`, `ice`, `sleet`) not
+      yet observed live — revisit on the first winter forecast.
+- [x] End-to-end run confirmed: `workflow_dispatch` succeeded, committed
+      `data/latest.json` with real, sane values (WBGT 84°F → 50/50
+      work-rest, 69% PoP → bring umbrella, UV 10 → minimize exposure).
+- [ ] Grayscale severity styling in `templates/full.liquid` — still only
+      logic-verified, not seen on real TRMNL hardware.
 
 ## Remaining setup steps, in order
 
-1. [ ] Replace the placeholder `WBGT_LAT`/`WBGT_LON` in `wbgt_trmnl.py`
-       (or better, only set them as repo variables, never hard-code) with
-       real coordinates for the location this should track.
-2. [ ] `git init`, create the GitHub repo, first commit, push. Public
-       repo recommended — nothing sensitive in code, and it gets
-       unlimited Actions minutes vs. a private repo's monthly cap.
-3. [ ] Run Check 1 and Check 2 above for real, before wiring anything
-       else together.
-4. [ ] Repo secret: `NWS_USER_AGENT`.
-5. [ ] Repo variables: `WBGT_LAT`, `WBGT_LON`, `WBGT_ZIP=23221`.
-6. [ ] Trigger the workflow manually (`workflow_dispatch`), confirm
-       `data/latest.json` gets committed with real, sane values.
-7. [ ] TRMNL: create the Private Plugin, Strategy = Polling, URL = the
-       raw GitHub URL for `data/latest.json`, `refresh_interval = 360`.
-       Paste `templates/full.liquid` into the markup editor.
-8. [ ] Optional: set up the Scriptable widget from README.md, test on an
-       actual device — the JS snippet there is unverified against a real
-       widget render.
+1. [x] Real coordinates confirmed as Richmond, VA (23221) — same as the
+       placeholder, so `wbgt_trmnl.py` defaults were left as-is. Repo
+       variables (below) are the actual source of truth.
+2. [x] `git init`, GitHub repo created and pushed:
+       https://github.com/mcmphd/trmnl-wbgt (public).
+3. [x] Check 1 and Check 2 run for real — see above.
+4. [x] Repo secret `NWS_USER_AGENT` set.
+5. [x] Repo variables `WBGT_LAT=37.5407`, `WBGT_LON=-77.4360`,
+       `WBGT_ZIP=23221` set.
+6. [x] Workflow triggered manually, `data/latest.json` committed with
+       real values — confirmed above.
+7. [ ] TRMNL: create the Private Plugin, Strategy = Polling, URL =
+       `https://raw.githubusercontent.com/mcmphd/trmnl-wbgt/main/data/latest.json`,
+       `refresh_interval = 360`. Paste `templates/full.liquid` into the
+       markup editor. Needs the TRMNL account — not doable from this
+       environment.
+8. [ ] Optional: set up the Scriptable widget from README.md (URL above),
+       test on an actual device — the JS snippet there is unverified
+       against a real widget render.
 
 ## Files in this project
 
