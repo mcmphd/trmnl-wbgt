@@ -39,6 +39,11 @@
         WBGT {{ flag | capitalize }} ({{ work.wbgt_f | round }}&deg;F)
       </div>
     {% endif %}
+    {% if air_quality.show %}
+      <div style="border: 1px solid #000; padding: 10px 18px; font-size: 18px;">
+        AQI {{ air_quality.aqi | round }} ({{ air_quality.category }})
+      </div>
+    {% endif %}
     {% if wind.windy %}
       <div style="border: 1px solid #000; padding: 10px 18px; font-size: 18px;">
         Windy, gusts {{ wind.gust_mph | round }}mph

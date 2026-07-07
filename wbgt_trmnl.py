@@ -58,6 +58,8 @@ NWS_USER_AGENT = os.environ.get(
     "NWS_USER_AGENT",
     "(personal-outdoor-dashboard, replace-with-your-email@example.com)",
 )
+
+AIRNOW_API_KEY = os.environ.get("AIRNOW_API_KEY", "")
 NWS_HEADERS = {"User-Agent": NWS_USER_AGENT, "Accept": "application/geo+json"}
 
 OUTPUT_PATH = os.environ.get("WBGT_OUTPUT_PATH", "data/latest.json")
@@ -99,6 +101,11 @@ UV_BANDS = [
     (999, "Minimize exposure 10am-4pm"),
 ]
 UV_SHOW_THRESHOLD = UV_BANDS[0][0]
+
+# EPA's own AQI category boundary for "Unhealthy for Sensitive Groups" --
+# matches WEATHER_FEED_CONTRACT.md's suggested gate exactly, not a value
+# we picked ourselves.
+AQI_SHOW_THRESHOLD = 101
 
 # Deliberately below 50%. Cost of carrying an umbrella you didn't need is
 # trivial; cost of not having one when it rains isn't. Minimax-regret
@@ -452,21 +459,55 @@ def compute_sun_answer(zip_code: str, now: dt.datetime) -> dict:
 
 
 # --------------------------------------------------------------------------
+# Answer: air quality (AQI)
+# --------------------------------------------------------------------------
+# EPA AirNow, per WEATHER_FEED_CONTRACT.md. Requires AIRNOW_API_KEY --
+# a real credential, not a schema guess: confirmed live against ZIP 23221
+# on 2026-07-07. Response is a list of per-pollutant records (O3, PM2.5,
+# PM10, ...); the reported AQI for a location is the max across
+# pollutants (EPA's own NowCast convention), not any single one of them.
+
+def compute_air_quality_answer(zip_code: str, now: dt.datetime) -> dict:
+    if not AIRNOW_API_KEY:
+        raise RuntimeError("AIRNOW_API_KEY not set -- air quality answer skipped.")
+    url = (
+        "https://www.airnowapi.org/aq/observation/zipCode/current/"
+        f"?format=application/json&zipCode={zip_code}&distance=25&API_KEY={AIRNOW_API_KEY}"
+    )
+    r = requests.get(url, timeout=15)
+    r.raise_for_status()
+    records = r.json()
+    if not records:
+        raise RuntimeError("AirNow returned no observation records for this ZIP.")
+    dominant = max(records, key=lambda rec: rec.get("AQI", 0))
+    aqi = dominant["AQI"]
+    return {
+        "aqi": aqi,
+        "category": dominant.get("Category", {}).get("Name", "Unknown"),
+        "show": aqi >= AQI_SHOW_THRESHOLD,
+        "as_of": now.isoformat(),
+    }
+
+
+# --------------------------------------------------------------------------
 # Tier 1: the verdict line
 # --------------------------------------------------------------------------
 # Deliberately rule-based and capped at two clauses, in priority order:
-# storm > WBGT flag (safety) > rain action > windy > sun. Storm leads --
-# matches the Eos-side contract's "highest default priority" for
-# thunderstorm advisories, and outranks the rest on plain safety grounds.
-# This differs slightly from the illustrative ordering in the original
-# design doc (which led with sun in one example) -- safety-relevant
-# heat/exertion guidance outranks a sunscreen reminder here. No
+# storm > WBGT flag > air quality (safety) > rain action > windy > sun.
+# Storm leads -- matches the Eos-side contract's "highest default
+# priority" for thunderstorm advisories, and outranks the rest on plain
+# safety grounds. WBGT and air quality are both grouped as health
+# hazards, ahead of rain/wind/sun which are comfort/prep concerns, not
+# hazards. This differs slightly from the illustrative ordering in the
+# original design doc (which led with sun in one example) -- safety-
+# relevant heat/exertion guidance outranks a sunscreen reminder here. No
 # qualitative "cool"/"hot" descriptor is synthesized (e.g. the doc's
 # "windy and cool") because no threshold for that was supplied; only
 # "windy" itself is asserted, since that threshold was. Revisit if a
 # feels-like qualitative band is ever wanted.
 
-def compute_verdict(work: dict, rain: dict, wind: dict, uv: dict, storm: dict) -> str:
+def compute_verdict(work: dict, rain: dict, wind: dict, uv: dict, storm: dict,
+                     aq: dict) -> str:
     clauses = []
 
     if storm and storm.get("expected"):
@@ -479,6 +520,9 @@ def compute_verdict(work: dict, rain: dict, wind: dict, uv: dict, storm: dict) -
     flag = work.get("flag") if work else None
     if flag in ("red", "black"):
         clauses.append(f"hydrate, limit exertion — WBGT {flag}")
+
+    if aq and aq.get("show"):
+        clauses.append(f"air quality {aq['category'].lower()} (AQI {aq['aqi']}) — limit time outside")
 
     action = rain.get("action") if rain else None
     if action in ("raincoat", "umbrella"):
@@ -571,10 +615,16 @@ def run(now: dt.datetime, existing: dict):
         had_failure = True
 
     try:
+        result["air_quality"] = compute_air_quality_answer(ZIP, now)
+    except Exception as e:
+        print(f"Air-quality answer failed: {e}", file=sys.stderr)
+        had_failure = True
+
+    try:
         result["verdict"] = compute_verdict(
             result.get("work", {}), result.get("rain", {}),
             result.get("wind", {}), result.get("sun", {}),
-            result.get("storm", {}),
+            result.get("storm", {}), result.get("air_quality", {}),
         )
     except Exception as e:
         print(f"Verdict synthesis failed: {e}", file=sys.stderr)
