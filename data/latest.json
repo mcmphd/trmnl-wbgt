@@ -1,43 +1,50 @@
 {
   "work": {
-    "wbgt_f": 79.0,
-    "flag": "white",
-    "label": "Work freely",
-    "minutes_per_hour": 60,
+    "wbgt_f": 83.0,
+    "flag": "green",
+    "label": "50% work / 50% rest",
+    "minutes_per_hour": 30,
     "reported": true,
-    "as_of": "2026-07-07T14:16:49.267030+00:00"
+    "as_of": "2026-07-07T19:14:00.373438+00:00"
   },
   "rain": {
-    "max_pop_pct": 47,
+    "max_pop_pct": 78,
     "action": "umbrella",
-    "window_label": "2pm\u20135pm",
+    "window_label": "2pm\u201311pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-07-07T14:16:49.267030+00:00"
+    "as_of": "2026-07-07T19:14:00.373438+00:00"
   },
   "sun": {
     "uv_index": 10.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-07-07T14:16:49.267030+00:00"
+    "as_of": "2026-07-07T19:14:00.373438+00:00"
   },
-  "generated_at": "2026-07-07T14:16:49.267030+00:00",
+  "generated_at": "2026-07-07T19:14:00.373438+00:00",
   "wind": {
-    "sustained_mph": 5.0,
+    "sustained_mph": 3.0,
     "gust_mph": 8.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-07-07T14:16:49.267030+00:00"
+    "as_of": "2026-07-07T19:14:00.373438+00:00"
   },
   "feels_like": {
     "low_f": 80.0,
-    "high_f": 98.0,
-    "as_of": "2026-07-07T14:16:49.267030+00:00"
+    "high_f": 96.0,
+    "as_of": "2026-07-07T19:14:00.373438+00:00"
   },
   "air": {
-    "high_f": 91.0,
-    "low_f": 70.0,
-    "as_of": "2026-07-07T14:16:49.267030+00:00"
+    "high_f": 89.0,
+    "low_f": 71.0,
+    "as_of": "2026-07-07T19:14:00.373438+00:00"
   },
-  "verdict": "Bring an umbrella (2pm\u20135pm); Minimize exposure 10am-4pm."
+  "verdict": "Thunderstorms expected (2pm\u201311pm) \u2014 head indoors; Bring an umbrella (2pm\u201311pm).",
+  "storm": {
+    "expected": true,
+    "max_pot_pct": 75,
+    "window_label": "2pm\u201311pm",
+    "window_hours": 6,
+    "as_of": "2026-07-07T19:14:00.373438+00:00"
+  }
 }
