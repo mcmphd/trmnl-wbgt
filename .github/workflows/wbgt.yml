@@ -29,6 +29,7 @@ jobs:
         id: compute
         env:
           NWS_USER_AGENT: ${{ secrets.NWS_USER_AGENT }}
+          AIRNOW_API_KEY: ${{ secrets.AIRNOW_API_KEY }}
           WBGT_LAT: ${{ vars.WBGT_LAT }}
           WBGT_LON: ${{ vars.WBGT_LON }}
           WBGT_ZIP: ${{ vars.WBGT_ZIP }}
