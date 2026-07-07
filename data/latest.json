@@ -5,7 +5,7 @@
     "label": "50% work / 50% rest",
     "minutes_per_hour": 30,
     "reported": true,
-    "as_of": "2026-07-07T19:31:34.031040+00:00"
+    "as_of": "2026-07-07T19:46:38.870080+00:00"
   },
   "rain": {
     "max_pop_pct": 78,
@@ -13,31 +13,31 @@
     "window_label": "2pm\u201311pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-07-07T19:31:34.031040+00:00"
+    "as_of": "2026-07-07T19:46:38.870080+00:00"
   },
   "sun": {
     "uv_index": 10.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-07-07T19:31:34.031040+00:00"
+    "as_of": "2026-07-07T19:46:38.870080+00:00"
   },
-  "generated_at": "2026-07-07T19:31:34.031040+00:00",
+  "generated_at": "2026-07-07T19:46:38.870080+00:00",
   "wind": {
     "sustained_mph": 3.0,
     "gust_mph": 8.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-07-07T19:31:34.031040+00:00"
+    "as_of": "2026-07-07T19:46:38.870080+00:00"
   },
   "feels_like": {
     "low_f": 80.0,
     "high_f": 96.0,
-    "as_of": "2026-07-07T19:31:34.031040+00:00"
+    "as_of": "2026-07-07T19:46:38.870080+00:00"
   },
   "air": {
     "high_f": 89.0,
     "low_f": 71.0,
-    "as_of": "2026-07-07T19:31:34.031040+00:00"
+    "as_of": "2026-07-07T19:46:38.870080+00:00"
   },
   "verdict": "Thunderstorms expected (2pm\u201311pm) \u2014 head indoors; Bring an umbrella (2pm\u201311pm).",
   "storm": {
@@ -45,12 +45,12 @@
     "max_pot_pct": 75,
     "window_label": "2pm\u201311pm",
     "window_hours": 6,
-    "as_of": "2026-07-07T19:31:34.031040+00:00"
+    "as_of": "2026-07-07T19:46:38.870080+00:00"
   },
   "air_quality": {
     "aqi": 50,
     "category": "Good",
     "show": false,
-    "as_of": "2026-07-07T19:31:34.031040+00:00"
+    "as_of": "2026-07-07T19:46:38.870080+00:00"
   }
 }
