@@ -5,13 +5,19 @@ wbgt_trmnl.py
 Daily weather briefing, decisions-first: a synthesized verdict line plus a
 small set of gated supporting metrics, not a dashboard of numbers.
 
-Decisions answered (see docs/WEATHER_BRIEFING.md in the Eos repo for the
-original design draft this follows):
+Decisions answered (see docs/WEATHER_BRIEFING.md and
+docs/WEATHER_FEED_CONTRACT.md in the Eos repo for the design this
+follows):
+  - Head indoors / delay plans -- NWS probabilityOfThunder, highest verdict priority
   - Hydrate / limit exertion  -- NWS native WBGT -> flag category
   - Umbrella vs raincoat      -- rain probability + intensity + wind
   - Windbreaker / layers      -- feels-like + wind gusts
   - Sunscreen / hat           -- EPA UV Index, gated (only shown when high+)
   - What to wear              -- feels-like range, not raw air temp
+
+AQI/air quality is NOT implemented -- no NWS layer for it; every real
+source (AirNow, PurpleAir) needs a separate API key. Pending that
+decision, see the Eos repo's WEATHER_DATA_SOURCE.md for status.
 
 Writes the result to data/latest.json (committed by the GitHub Actions
 workflow). TRMNL's Polling plugin reads that file directly.
@@ -98,6 +104,12 @@ UV_SHOW_THRESHOLD = UV_BANDS[0][0]
 # trivial; cost of not having one when it rains isn't. Minimax-regret
 # framing, not an expected-value one.
 UMBRELLA_POP_THRESHOLD = 30.0
+
+# Same minimax-regret reasoning as UMBRELLA_POP_THRESHOLD, reused rather
+# than re-derived: cost of a false "storms expected" is a glance at the
+# sky, cost of a missed one is getting caught outside. Adjustable if 30%
+# turns out too chatty in practice.
+STORM_POT_THRESHOLD = 30.0
 
 # "Windy" gate: crosses over into affecting the umbrella-vs-raincoat call
 # and the windbreaker/layers signal. User-supplied, not derived --
@@ -301,6 +313,40 @@ def compute_rain_answer(grid: dict, now: dt.datetime, lookahead_hours: int,
 
 
 # --------------------------------------------------------------------------
+# Answer: thunderstorm advisory
+# --------------------------------------------------------------------------
+# NWS-native only, same as everything else here -- no SPC convective
+# outlook (marginal/slight/enhanced/moderate/severe) integration. That's
+# a genuinely different data source (Storm Prediction Center, not
+# api.weather.gov gridpoint data); "severity" is left out of the output
+# entirely rather than faked, until/unless that's worth adding as its
+# own separate integration.
+
+def compute_storm_answer(grid: dict, now: dt.datetime, lookahead_hours: int,
+                          tz: ZoneInfo) -> dict:
+    end = now + dt.timedelta(hours=lookahead_hours)
+    hits = _values_in_window(grid.get("probabilityOfThunder"), now, end)
+    values = [v for _, _, v in hits if v is not None]
+    max_pot = max(values) if values else 0.0
+    expected = max_pot >= STORM_POT_THRESHOLD
+
+    window_label = None
+    if expected:
+        likely_hits = [(s, e) for s, e, v in hits if v is not None and v >= STORM_POT_THRESHOLD]
+        window_start = min(s for s, e in likely_hits)
+        window_end = max(e for s, e in likely_hits)
+        window_label = _format_local_window(window_start, window_end, tz)
+
+    return {
+        "expected": expected,
+        "max_pot_pct": round(max_pot, 0),
+        "window_label": window_label,
+        "window_hours": lookahead_hours,
+        "as_of": now.isoformat(),
+    }
+
+
+# --------------------------------------------------------------------------
 # Answer: windbreaker / layers (wind)
 # --------------------------------------------------------------------------
 
@@ -409,16 +455,26 @@ def compute_sun_answer(zip_code: str, now: dt.datetime) -> dict:
 # Tier 1: the verdict line
 # --------------------------------------------------------------------------
 # Deliberately rule-based and capped at two clauses, in priority order:
-# WBGT flag (safety) > rain action > windy > sun. This differs slightly
-# from the illustrative ordering in the design doc (which led with sun in
-# one example) -- safety-relevant heat/exertion guidance outranks a
-# sunscreen reminder here. No qualitative "cool"/"hot" descriptor is
-# synthesized (e.g. the doc's "windy and cool") because no threshold for
-# that was supplied; only "windy" itself is asserted, since that threshold
-# was. Revisit if a feels-like qualitative band is ever wanted.
+# storm > WBGT flag (safety) > rain action > windy > sun. Storm leads --
+# matches the Eos-side contract's "highest default priority" for
+# thunderstorm advisories, and outranks the rest on plain safety grounds.
+# This differs slightly from the illustrative ordering in the original
+# design doc (which led with sun in one example) -- safety-relevant
+# heat/exertion guidance outranks a sunscreen reminder here. No
+# qualitative "cool"/"hot" descriptor is synthesized (e.g. the doc's
+# "windy and cool") because no threshold for that was supplied; only
+# "windy" itself is asserted, since that threshold was. Revisit if a
+# feels-like qualitative band is ever wanted.
 
-def compute_verdict(work: dict, rain: dict, wind: dict, uv: dict) -> str:
+def compute_verdict(work: dict, rain: dict, wind: dict, uv: dict, storm: dict) -> str:
     clauses = []
+
+    if storm and storm.get("expected"):
+        label = "Thunderstorms expected"
+        if storm.get("window_label"):
+            label += f" ({storm['window_label']})"
+        label += " — head indoors"
+        clauses.append(label)
 
     flag = work.get("flag") if work else None
     if flag in ("red", "black"):
@@ -500,6 +556,11 @@ def run(now: dt.datetime, existing: dict):
         except Exception as e:
             print(f"Air high/low answer failed: {e}", file=sys.stderr)
             had_failure = True
+        try:
+            result["storm"] = compute_storm_answer(grid, now, LOOKAHEAD_HOURS, tz)
+        except Exception as e:
+            print(f"Storm answer failed: {e}", file=sys.stderr)
+            had_failure = True
     else:
         had_failure = True
 
@@ -513,6 +574,7 @@ def run(now: dt.datetime, existing: dict):
         result["verdict"] = compute_verdict(
             result.get("work", {}), result.get("rain", {}),
             result.get("wind", {}), result.get("sun", {}),
+            result.get("storm", {}),
         )
     except Exception as e:
         print(f"Verdict synthesis failed: {e}", file=sys.stderr)

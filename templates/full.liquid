@@ -26,6 +26,11 @@
   </div>
 
   <div style="display: flex; flex-direction: row; flex-wrap: wrap; gap: 14px;">
+    {% if storm.expected %}
+      <div style="background: #000000; color: #ffffff; padding: 10px 18px; font-size: 18px;">
+        Storms{% if storm.window_label %}, {{ storm.window_label }}{% endif %}
+      </div>
+    {% endif %}
     <div style="border: 1px solid #000; padding: 10px 18px; font-size: 18px;">
       Feels {{ feels_like.low_f | round }}–{{ feels_like.high_f | round }}&deg;F
     </div>
