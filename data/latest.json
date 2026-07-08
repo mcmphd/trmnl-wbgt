@@ -5,52 +5,52 @@
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-07-08T08:15:28.393911+00:00"
+    "as_of": "2026-07-08T13:49:25.689801+00:00"
   },
   "rain": {
-    "max_pop_pct": 30,
+    "max_pop_pct": 42,
     "action": "umbrella",
-    "window_label": "8am\u201311am",
+    "window_label": "8am\u20135pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-07-08T08:15:28.393911+00:00"
+    "as_of": "2026-07-08T13:49:25.689801+00:00"
   },
   "sun": {
     "uv_index": 4.0,
     "label": "SPF 30+, hat",
     "show": true,
-    "as_of": "2026-07-08T08:15:28.393911+00:00"
+    "as_of": "2026-07-08T13:49:25.689801+00:00"
   },
-  "generated_at": "2026-07-08T08:15:28.393911+00:00",
+  "generated_at": "2026-07-08T13:49:25.689801+00:00",
   "wind": {
     "sustained_mph": 6.0,
     "gust_mph": 9.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-07-08T08:15:28.393911+00:00"
+    "as_of": "2026-07-08T13:49:25.689801+00:00"
   },
   "feels_like": {
-    "low_f": 74.0,
+    "low_f": 77.0,
     "high_f": 88.0,
-    "as_of": "2026-07-08T08:15:28.393911+00:00"
+    "as_of": "2026-07-08T13:49:25.689801+00:00"
   },
   "air": {
     "high_f": 83.0,
     "low_f": 70.0,
-    "as_of": "2026-07-08T08:15:28.393911+00:00"
+    "as_of": "2026-07-08T13:49:25.689801+00:00"
   },
-  "verdict": "Bring an umbrella (8am\u201311am); SPF 30+, hat.",
+  "verdict": "Thunderstorms expected (2pm\u20135pm) \u2014 head indoors; Bring an umbrella (8am\u20135pm).",
   "storm": {
-    "expected": false,
-    "max_pot_pct": 20,
-    "window_label": null,
+    "expected": true,
+    "max_pot_pct": 32,
+    "window_label": "2pm\u20135pm",
     "window_hours": 6,
-    "as_of": "2026-07-08T08:15:28.393911+00:00"
+    "as_of": "2026-07-08T13:49:25.689801+00:00"
   },
   "air_quality": {
-    "aqi": 39,
+    "aqi": 34,
     "category": "Good",
     "show": false,
-    "as_of": "2026-07-08T08:15:28.393911+00:00"
+    "as_of": "2026-07-08T13:49:25.689801+00:00"
   }
 }
