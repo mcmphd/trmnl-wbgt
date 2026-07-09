@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 79.0,
+    "wbgt_f": 74.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-07-08T19:15:29.892316+00:00"
+    "as_of": "2026-07-09T02:25:19.045290+00:00"
   },
   "rain": {
-    "max_pop_pct": 31,
-    "action": "umbrella",
-    "window_label": "2pm\u20138pm",
+    "max_pop_pct": 23,
+    "action": "none",
+    "window_label": null,
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-07-08T19:15:29.892316+00:00"
+    "as_of": "2026-07-09T02:25:19.045290+00:00"
   },
   "sun": {
-    "uv_index": 4.0,
-    "label": "SPF 30+, hat",
+    "uv_index": 10.0,
+    "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-07-08T19:15:29.892316+00:00"
+    "as_of": "2026-07-09T02:25:19.045290+00:00"
   },
-  "generated_at": "2026-07-08T19:15:29.892316+00:00",
+  "generated_at": "2026-07-09T02:25:19.045290+00:00",
   "wind": {
-    "sustained_mph": 6.0,
-    "gust_mph": 12.0,
+    "sustained_mph": 2.0,
+    "gust_mph": 8.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-07-08T19:15:29.892316+00:00"
+    "as_of": "2026-07-09T02:25:19.045290+00:00"
   },
   "feels_like": {
     "low_f": 78.0,
-    "high_f": 88.0,
-    "as_of": "2026-07-08T19:15:29.892316+00:00"
+    "high_f": 78.0,
+    "as_of": "2026-07-09T02:25:19.045290+00:00"
   },
   "air": {
     "high_f": 83.0,
     "low_f": 72.0,
-    "as_of": "2026-07-08T19:15:29.892316+00:00"
+    "as_of": "2026-07-09T02:25:19.045290+00:00"
   },
-  "verdict": "Thunderstorms expected (2pm\u20138pm) \u2014 head indoors; Bring an umbrella (2pm\u20138pm).",
+  "verdict": "Minimize exposure 10am-4pm.",
   "storm": {
-    "expected": true,
-    "max_pot_pct": 31,
-    "window_label": "2pm\u20138pm",
+    "expected": false,
+    "max_pot_pct": 11,
+    "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-07-08T19:15:29.892316+00:00"
+    "as_of": "2026-07-09T02:25:19.045290+00:00"
   },
   "air_quality": {
     "aqi": 39,
     "category": "Good",
     "show": false,
-    "as_of": "2026-07-08T19:15:29.892316+00:00"
+    "as_of": "2026-07-09T02:25:19.045290+00:00"
   }
 }
