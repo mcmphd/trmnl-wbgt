@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 82.0,
-    "flag": "green",
-    "label": "50% work / 50% rest",
-    "minutes_per_hour": 30,
+    "wbgt_f": 76.0,
+    "flag": "white",
+    "label": "Work freely",
+    "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-07-19T18:57:13.308514+00:00"
+    "as_of": "2026-07-20T02:27:05.547371+00:00"
   },
   "rain": {
-    "max_pop_pct": 66,
+    "max_pop_pct": 35,
     "action": "umbrella",
-    "window_label": "2pm\u201311pm",
+    "window_label": "8pm\u201311pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-07-19T18:57:13.308514+00:00"
+    "as_of": "2026-07-20T02:27:05.547371+00:00"
   },
   "sun": {
-    "uv_index": 8.0,
-    "label": "Minimize exposure 10am-4pm",
+    "uv_index": 7.0,
+    "label": "SPF 30+, hat, seek midday shade",
     "show": true,
-    "as_of": "2026-07-19T18:57:13.308514+00:00"
+    "as_of": "2026-07-20T02:27:05.547371+00:00"
   },
-  "generated_at": "2026-07-19T18:57:13.308514+00:00",
+  "generated_at": "2026-07-20T02:27:05.547371+00:00",
   "wind": {
-    "sustained_mph": 6.0,
-    "gust_mph": 8.0,
+    "sustained_mph": 2.0,
+    "gust_mph": 5.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-07-19T18:57:13.308514+00:00"
+    "as_of": "2026-07-20T02:27:05.547371+00:00"
   },
   "feels_like": {
     "low_f": 79.0,
-    "high_f": 97.0,
-    "as_of": "2026-07-19T18:57:13.308514+00:00"
+    "high_f": 82.0,
+    "as_of": "2026-07-20T02:27:05.547371+00:00"
   },
   "air": {
     "high_f": 90.0,
     "low_f": 70.0,
-    "as_of": "2026-07-19T18:57:13.308514+00:00"
+    "as_of": "2026-07-20T02:27:05.547371+00:00"
   },
-  "verdict": "Thunderstorms expected (2pm\u20138pm) \u2014 head indoors; Bring an umbrella (2pm\u201311pm).",
+  "verdict": "Bring an umbrella (8pm\u201311pm); SPF 30+, hat, seek midday shade.",
   "storm": {
-    "expected": true,
-    "max_pot_pct": 46,
-    "window_label": "2pm\u20138pm",
+    "expected": false,
+    "max_pot_pct": 27,
+    "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-07-19T18:57:13.308514+00:00"
+    "as_of": "2026-07-20T02:27:05.547371+00:00"
   },
   "air_quality": {
-    "aqi": 42,
+    "aqi": 47,
     "category": "Good",
     "show": false,
-    "as_of": "2026-07-19T18:57:13.308514+00:00"
+    "as_of": "2026-07-20T02:27:05.547371+00:00"
   }
 }
