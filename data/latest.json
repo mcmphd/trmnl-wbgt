@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 69.0,
+    "wbgt_f": 70.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-07-25T07:57:15.138027+00:00"
+    "as_of": "2026-07-25T13:11:15.682852+00:00"
   },
   "rain": {
-    "max_pop_pct": 60,
+    "max_pop_pct": 45,
     "action": "umbrella",
-    "window_label": "2am\u201310am",
+    "window_label": "8am\u201312pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-07-25T07:57:15.138027+00:00"
+    "as_of": "2026-07-25T13:11:15.682852+00:00"
   },
   "sun": {
     "uv_index": 10.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-07-25T07:57:15.138027+00:00"
+    "as_of": "2026-07-25T13:11:15.682852+00:00"
   },
-  "generated_at": "2026-07-25T07:57:15.138027+00:00",
+  "generated_at": "2026-07-25T13:11:15.682852+00:00",
   "wind": {
-    "sustained_mph": 3.0,
-    "gust_mph": 6.0,
+    "sustained_mph": 5.0,
+    "gust_mph": 7.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-07-25T07:57:15.138027+00:00"
+    "as_of": "2026-07-25T13:11:15.682852+00:00"
   },
   "feels_like": {
-    "low_f": 70.0,
+    "low_f": 71.0,
     "high_f": 81.0,
-    "as_of": "2026-07-25T07:57:15.138027+00:00"
+    "as_of": "2026-07-25T13:11:15.682852+00:00"
   },
   "air": {
     "high_f": 80.0,
     "low_f": 64.0,
-    "as_of": "2026-07-25T07:57:15.138027+00:00"
+    "as_of": "2026-07-25T13:11:15.682852+00:00"
   },
-  "verdict": "Bring an umbrella (2am\u201310am); Minimize exposure 10am-4pm.",
+  "verdict": "Bring an umbrella (8am\u201312pm); Minimize exposure 10am-4pm.",
   "storm": {
     "expected": false,
-    "max_pot_pct": 13,
+    "max_pot_pct": 3,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-07-25T07:57:15.138027+00:00"
+    "as_of": "2026-07-25T13:11:15.682852+00:00"
   },
   "air_quality": {
-    "aqi": 32,
+    "aqi": 31,
     "category": "Good",
     "show": false,
-    "as_of": "2026-07-25T07:57:15.138027+00:00"
+    "as_of": "2026-07-25T13:11:15.682852+00:00"
   }
 }
