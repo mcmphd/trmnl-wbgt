@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 71.0,
+    "wbgt_f": 75.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-07-28T08:23:29.621360+00:00"
+    "as_of": "2026-07-28T13:50:12.019879+00:00"
   },
   "rain": {
-    "max_pop_pct": 15,
-    "action": "none",
-    "window_label": null,
+    "max_pop_pct": 55,
+    "action": "raincoat",
+    "window_label": "2pm\u20134pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-07-28T08:23:29.621360+00:00"
+    "as_of": "2026-07-28T13:50:12.019879+00:00"
   },
   "sun": {
     "uv_index": 8.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-07-28T08:23:29.621360+00:00"
+    "as_of": "2026-07-28T13:50:12.019879+00:00"
   },
-  "generated_at": "2026-07-28T08:23:29.621360+00:00",
+  "generated_at": "2026-07-28T13:50:12.019879+00:00",
   "wind": {
-    "sustained_mph": 9.0,
-    "gust_mph": 17.0,
-    "windy": false,
+    "sustained_mph": 14.0,
+    "gust_mph": 25.0,
+    "windy": true,
     "window_hours": 6,
-    "as_of": "2026-07-28T08:23:29.621360+00:00"
+    "as_of": "2026-07-28T13:50:12.019879+00:00"
   },
   "feels_like": {
-    "low_f": 72.0,
+    "low_f": 78.0,
     "high_f": 97.0,
-    "as_of": "2026-07-28T08:23:29.621360+00:00"
+    "as_of": "2026-07-28T13:50:12.019879+00:00"
   },
   "air": {
     "high_f": 89.0,
     "low_f": 68.0,
-    "as_of": "2026-07-28T08:23:29.621360+00:00"
+    "as_of": "2026-07-28T13:50:12.019879+00:00"
   },
-  "verdict": "Minimize exposure 10am-4pm.",
+  "verdict": "Thunderstorms expected (2pm\u20134pm) \u2014 head indoors; Bring a raincoat (2pm\u20134pm).",
   "storm": {
-    "expected": false,
-    "max_pot_pct": 12,
-    "window_label": null,
+    "expected": true,
+    "max_pot_pct": 55,
+    "window_label": "2pm\u20134pm",
     "window_hours": 6,
-    "as_of": "2026-07-28T08:23:29.621360+00:00"
+    "as_of": "2026-07-28T13:50:12.019879+00:00"
   },
   "air_quality": {
-    "aqi": 66,
+    "aqi": 67,
     "category": "Moderate",
     "show": false,
-    "as_of": "2026-07-28T08:23:29.621360+00:00"
+    "as_of": "2026-07-28T13:50:12.019879+00:00"
   }
 }
