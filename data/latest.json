@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 84.0,
-    "flag": "green",
-    "label": "50% work / 50% rest",
-    "minutes_per_hour": 30,
+    "wbgt_f": 79.0,
+    "flag": "white",
+    "label": "Work freely",
+    "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-08-08T18:27:17.150110+00:00"
+    "as_of": "2026-08-09T01:12:36.202726+00:00"
   },
   "rain": {
-    "max_pop_pct": 26,
+    "max_pop_pct": 17,
     "action": "none",
     "window_label": null,
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-08-08T18:27:17.150110+00:00"
+    "as_of": "2026-08-09T01:12:36.202726+00:00"
   },
   "sun": {
-    "uv_index": 9.0,
+    "uv_index": 8.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-08-08T18:27:17.150110+00:00"
+    "as_of": "2026-08-09T01:12:36.202726+00:00"
   },
-  "generated_at": "2026-08-08T18:27:17.150110+00:00",
+  "generated_at": "2026-08-09T01:12:36.202726+00:00",
   "wind": {
-    "sustained_mph": 10.0,
-    "gust_mph": 18.0,
+    "sustained_mph": 7.0,
+    "gust_mph": 14.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-08-08T18:27:17.150110+00:00"
+    "as_of": "2026-08-09T01:12:36.202726+00:00"
   },
   "feels_like": {
     "low_f": 82.0,
-    "high_f": 100.0,
-    "as_of": "2026-08-08T18:27:17.150110+00:00"
+    "high_f": 87.0,
+    "as_of": "2026-08-09T01:12:36.202726+00:00"
   },
   "air": {
     "high_f": 94.0,
-    "low_f": 74.0,
-    "as_of": "2026-08-08T18:27:17.150110+00:00"
+    "low_f": 75.0,
+    "as_of": "2026-08-09T01:12:36.202726+00:00"
   },
   "verdict": "Minimize exposure 10am-4pm.",
   "storm": {
     "expected": false,
-    "max_pot_pct": 26,
+    "max_pot_pct": 17,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-08-08T18:27:17.150110+00:00"
+    "as_of": "2026-08-09T01:12:36.202726+00:00"
   },
   "air_quality": {
-    "aqi": 35,
+    "aqi": 44,
     "category": "Good",
     "show": false,
-    "as_of": "2026-08-08T18:27:17.150110+00:00"
+    "as_of": "2026-08-09T01:12:36.202726+00:00"
   }
 }
