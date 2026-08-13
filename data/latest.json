@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 81.0,
-    "flag": "green",
-    "label": "75% work / 25% rest",
-    "minutes_per_hour": 45,
+    "wbgt_f": 77.0,
+    "flag": "white",
+    "label": "Work freely",
+    "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-08-12T18:53:34.086521+00:00"
+    "as_of": "2026-08-13T01:22:38.757362+00:00"
   },
   "rain": {
-    "max_pop_pct": 2,
+    "max_pop_pct": 9,
     "action": "none",
     "window_label": null,
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-08-12T18:53:34.086521+00:00"
+    "as_of": "2026-08-13T01:22:38.757362+00:00"
   },
   "sun": {
     "uv_index": 8.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-08-12T18:53:34.086521+00:00"
+    "as_of": "2026-08-13T01:22:38.757362+00:00"
   },
-  "generated_at": "2026-08-12T18:53:34.086521+00:00",
+  "generated_at": "2026-08-13T01:22:38.757362+00:00",
   "wind": {
-    "sustained_mph": 6.0,
-    "gust_mph": 8.0,
+    "sustained_mph": 2.0,
+    "gust_mph": 6.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-08-12T18:53:34.086521+00:00"
+    "as_of": "2026-08-13T01:22:38.757362+00:00"
   },
   "feels_like": {
     "low_f": 80.0,
-    "high_f": 93.0,
-    "as_of": "2026-08-12T18:53:34.086521+00:00"
+    "high_f": 83.0,
+    "as_of": "2026-08-13T01:22:38.757362+00:00"
   },
   "air": {
     "high_f": 90.0,
-    "low_f": 70.0,
-    "as_of": "2026-08-12T18:53:34.086521+00:00"
+    "low_f": 72.0,
+    "as_of": "2026-08-13T01:22:38.757362+00:00"
   },
   "verdict": "Minimize exposure 10am-4pm.",
   "storm": {
     "expected": false,
-    "max_pot_pct": 2,
+    "max_pot_pct": 9,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-08-12T18:53:34.086521+00:00"
+    "as_of": "2026-08-13T01:22:38.757362+00:00"
   },
   "air_quality": {
-    "aqi": 58,
+    "aqi": 57,
     "category": "Moderate",
     "show": false,
-    "as_of": "2026-08-12T18:53:34.086521+00:00"
+    "as_of": "2026-08-13T01:22:38.757362+00:00"
   }
 }
