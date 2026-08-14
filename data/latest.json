@@ -5,52 +5,52 @@
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-08-14T07:15:32.712476+00:00"
+    "as_of": "2026-08-14T12:51:47.008771+00:00"
   },
   "rain": {
-    "max_pop_pct": 9,
-    "action": "none",
-    "window_label": null,
+    "max_pop_pct": 36,
+    "action": "umbrella",
+    "window_label": "2pm\u20134pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-08-14T07:15:32.712476+00:00"
+    "as_of": "2026-08-14T12:51:47.008771+00:00"
   },
   "sun": {
     "uv_index": 5.0,
     "label": "SPF 30+, hat",
     "show": true,
-    "as_of": "2026-08-14T07:15:32.712476+00:00"
+    "as_of": "2026-08-14T12:51:47.008771+00:00"
   },
-  "generated_at": "2026-08-14T07:15:32.712476+00:00",
+  "generated_at": "2026-08-14T12:51:47.008771+00:00",
   "wind": {
-    "sustained_mph": 1.0,
-    "gust_mph": 3.0,
+    "sustained_mph": 5.0,
+    "gust_mph": 10.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-08-14T07:15:32.712476+00:00"
+    "as_of": "2026-08-14T12:51:47.008771+00:00"
   },
   "feels_like": {
-    "low_f": 79.0,
+    "low_f": 80.0,
     "high_f": 98.0,
-    "as_of": "2026-08-14T07:15:32.712476+00:00"
+    "as_of": "2026-08-14T12:51:47.008771+00:00"
   },
   "air": {
     "high_f": 90.0,
     "low_f": 72.0,
-    "as_of": "2026-08-14T07:15:32.712476+00:00"
+    "as_of": "2026-08-14T12:51:47.008771+00:00"
   },
-  "verdict": "SPF 30+, hat.",
+  "verdict": "Thunderstorms expected (2pm\u20134pm) \u2014 head indoors; Bring an umbrella (2pm\u20134pm).",
   "storm": {
-    "expected": false,
-    "max_pot_pct": 7,
-    "window_label": null,
+    "expected": true,
+    "max_pot_pct": 40,
+    "window_label": "2pm\u20134pm",
     "window_hours": 6,
-    "as_of": "2026-08-14T07:15:32.712476+00:00"
+    "as_of": "2026-08-14T12:51:47.008771+00:00"
   },
   "air_quality": {
-    "aqi": 55,
+    "aqi": 56,
     "category": "Moderate",
     "show": false,
-    "as_of": "2026-08-14T07:15:32.712476+00:00"
+    "as_of": "2026-08-14T12:51:47.008771+00:00"
   }
 }
