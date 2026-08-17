@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 75.0,
-    "flag": "white",
-    "label": "Work freely",
-    "minutes_per_hour": 60,
+    "wbgt_f": 84.0,
+    "flag": "green",
+    "label": "50% work / 50% rest",
+    "minutes_per_hour": 30,
     "reported": true,
-    "as_of": "2026-08-17T12:31:16.018860+00:00"
+    "as_of": "2026-08-17T18:29:09.487045+00:00"
   },
   "rain": {
-    "max_pop_pct": 4,
-    "action": "none",
-    "window_label": null,
+    "max_pop_pct": 34,
+    "action": "umbrella",
+    "window_label": "8pm\u20139pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-08-17T12:31:16.018860+00:00"
+    "as_of": "2026-08-17T18:29:09.487045+00:00"
   },
   "sun": {
     "uv_index": 9.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-08-17T12:31:16.018860+00:00"
+    "as_of": "2026-08-17T18:29:09.487045+00:00"
   },
-  "generated_at": "2026-08-17T12:31:16.018860+00:00",
+  "generated_at": "2026-08-17T18:29:09.487045+00:00",
   "wind": {
-    "sustained_mph": 7.0,
-    "gust_mph": 12.0,
+    "sustained_mph": 8.0,
+    "gust_mph": 13.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-08-17T12:31:16.018860+00:00"
+    "as_of": "2026-08-17T18:29:09.487045+00:00"
   },
   "feels_like": {
-    "low_f": 79.0,
-    "high_f": 101.0,
-    "as_of": "2026-08-17T12:31:16.018860+00:00"
+    "low_f": 84.0,
+    "high_f": 100.0,
+    "as_of": "2026-08-17T18:29:09.487045+00:00"
   },
   "air": {
     "high_f": 93.0,
     "low_f": 72.0,
-    "as_of": "2026-08-17T12:31:16.018860+00:00"
+    "as_of": "2026-08-17T18:29:09.487045+00:00"
   },
-  "verdict": "Minimize exposure 10am-4pm.",
+  "verdict": "Bring an umbrella (8pm\u20139pm); Minimize exposure 10am-4pm.",
   "storm": {
     "expected": false,
-    "max_pot_pct": 6,
+    "max_pot_pct": 22,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-08-17T12:31:16.018860+00:00"
+    "as_of": "2026-08-17T18:29:09.487045+00:00"
   },
   "air_quality": {
-    "aqi": 31,
+    "aqi": 37,
     "category": "Good",
     "show": false,
-    "as_of": "2026-08-17T06:40:42.014740+00:00"
+    "as_of": "2026-08-17T18:29:09.487045+00:00"
   }
 }
