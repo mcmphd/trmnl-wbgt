@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 79.0,
+    "wbgt_f": 75.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-08-17T00:53:51.154403+00:00"
+    "as_of": "2026-08-17T06:40:42.014740+00:00"
   },
   "rain": {
-    "max_pop_pct": 63,
+    "max_pop_pct": 33,
     "action": "umbrella",
-    "window_label": "8pm\u20134am",
+    "window_label": "2am\u20134am",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-08-17T00:53:51.154403+00:00"
+    "as_of": "2026-08-17T06:40:42.014740+00:00"
   },
   "sun": {
     "uv_index": 9.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-08-17T00:53:51.154403+00:00"
+    "as_of": "2026-08-17T06:40:42.014740+00:00"
   },
-  "generated_at": "2026-08-17T00:53:51.154403+00:00",
+  "generated_at": "2026-08-17T06:40:42.014740+00:00",
   "wind": {
     "sustained_mph": 8.0,
-    "gust_mph": 15.0,
+    "gust_mph": 13.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-08-17T00:53:51.154403+00:00"
+    "as_of": "2026-08-17T06:40:42.014740+00:00"
   },
   "feels_like": {
-    "low_f": 80.0,
-    "high_f": 85.0,
-    "as_of": "2026-08-17T00:53:51.154403+00:00"
+    "low_f": 77.0,
+    "high_f": 102.0,
+    "as_of": "2026-08-17T06:40:42.014740+00:00"
   },
   "air": {
-    "high_f": 87.0,
+    "high_f": 93.0,
     "low_f": 72.0,
-    "as_of": "2026-08-17T00:53:51.154403+00:00"
+    "as_of": "2026-08-17T06:40:42.014740+00:00"
   },
-  "verdict": "Thunderstorms expected (8pm\u20132am) \u2014 head indoors; Bring an umbrella (8pm\u20134am).",
+  "verdict": "Bring an umbrella (2am\u20134am); Minimize exposure 10am-4pm.",
   "storm": {
-    "expected": true,
-    "max_pot_pct": 39,
-    "window_label": "8pm\u20132am",
+    "expected": false,
+    "max_pot_pct": 9,
+    "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-08-17T00:53:51.154403+00:00"
+    "as_of": "2026-08-17T06:40:42.014740+00:00"
   },
   "air_quality": {
-    "aqi": 52,
-    "category": "Moderate",
+    "aqi": 31,
+    "category": "Good",
     "show": false,
-    "as_of": "2026-08-17T00:53:51.154403+00:00"
+    "as_of": "2026-08-17T06:40:42.014740+00:00"
   }
 }
