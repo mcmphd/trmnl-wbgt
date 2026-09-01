@@ -1,51 +1,51 @@
 {
   "work": {
-    "wbgt_f": 83.0,
-    "flag": "green",
-    "label": "50% work / 50% rest",
-    "minutes_per_hour": 30,
+    "wbgt_f": 76.0,
+    "flag": "white",
+    "label": "Work freely",
+    "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-08-31T22:16:37.052793+00:00"
+    "as_of": "2026-09-01T03:04:44.794944+00:00"
   },
   "rain": {
-    "max_pop_pct": 15,
+    "max_pop_pct": 6,
     "action": "none",
     "window_label": null,
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-08-31T22:16:37.052793+00:00"
+    "as_of": "2026-09-01T03:04:44.794944+00:00"
   },
   "sun": {
     "uv_index": 9.0,
     "label": "Minimize exposure 10am-4pm",
     "show": true,
-    "as_of": "2026-08-31T22:16:37.052793+00:00"
+    "as_of": "2026-09-01T03:04:44.794944+00:00"
   },
-  "generated_at": "2026-08-31T22:16:37.052793+00:00",
+  "generated_at": "2026-09-01T03:04:44.794944+00:00",
   "wind": {
-    "sustained_mph": 3.0,
-    "gust_mph": 6.0,
+    "sustained_mph": 2.0,
+    "gust_mph": 3.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-08-31T22:16:37.052793+00:00"
+    "as_of": "2026-09-01T03:04:44.794944+00:00"
   },
   "feels_like": {
     "low_f": 81.0,
-    "high_f": 96.0,
-    "as_of": "2026-08-31T22:16:37.052793+00:00"
+    "high_f": 81.0,
+    "as_of": "2026-09-01T03:04:44.794944+00:00"
   },
   "air": {
     "high_f": 93.0,
-    "low_f": 72.0,
-    "as_of": "2026-08-31T22:16:37.052793+00:00"
+    "low_f": 74.0,
+    "as_of": "2026-09-01T03:04:44.794944+00:00"
   },
   "verdict": "Minimize exposure 10am-4pm.",
   "storm": {
     "expected": false,
-    "max_pot_pct": 15,
+    "max_pot_pct": 6,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-08-31T22:16:37.052793+00:00"
+    "as_of": "2026-09-01T03:04:44.794944+00:00"
   },
   "air_quality": {
     "aqi": 54,
