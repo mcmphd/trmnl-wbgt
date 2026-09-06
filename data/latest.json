@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 82.0,
-    "flag": "green",
-    "label": "50% work / 50% rest",
-    "minutes_per_hour": 30,
+    "wbgt_f": 74.0,
+    "flag": "white",
+    "label": "Work freely",
+    "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-09-05T19:48:07.287623+00:00"
+    "as_of": "2026-09-06T02:25:00.191317+00:00"
   },
   "rain": {
-    "max_pop_pct": 53,
-    "action": "umbrella",
-    "window_label": "3pm\u201311pm",
+    "max_pop_pct": 17,
+    "action": "none",
+    "window_label": null,
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-09-05T19:48:07.287623+00:00"
+    "as_of": "2026-09-06T02:25:00.191317+00:00"
   },
   "sun": {
-    "uv_index": 7.0,
-    "label": "SPF 30+, hat, seek midday shade",
+    "uv_index": 4.0,
+    "label": "SPF 30+, hat",
     "show": true,
-    "as_of": "2026-09-05T19:48:07.287623+00:00"
+    "as_of": "2026-09-06T02:25:00.191317+00:00"
   },
-  "generated_at": "2026-09-05T19:48:07.287623+00:00",
+  "generated_at": "2026-09-06T02:25:00.191317+00:00",
   "wind": {
-    "sustained_mph": 6.0,
-    "gust_mph": 9.0,
+    "sustained_mph": 3.0,
+    "gust_mph": 5.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-09-05T19:48:07.287623+00:00"
+    "as_of": "2026-09-06T02:25:00.191317+00:00"
   },
   "feels_like": {
     "low_f": 78.0,
-    "high_f": 95.0,
-    "as_of": "2026-09-05T19:48:07.287623+00:00"
+    "high_f": 79.0,
+    "as_of": "2026-09-06T02:25:00.191317+00:00"
   },
   "air": {
-    "high_f": 90.0,
-    "low_f": 67.0,
-    "as_of": "2026-09-05T19:48:07.287623+00:00"
+    "high_f": 85.0,
+    "low_f": 69.0,
+    "as_of": "2026-09-06T02:25:00.191317+00:00"
   },
-  "verdict": "Thunderstorms expected (2pm\u201311pm) \u2014 head indoors; Bring an umbrella (3pm\u201311pm).",
+  "verdict": "Thunderstorms expected (8pm\u201311pm) \u2014 head indoors; SPF 30+, hat.",
   "storm": {
     "expected": true,
-    "max_pot_pct": 36,
-    "window_label": "2pm\u201311pm",
+    "max_pot_pct": 32,
+    "window_label": "8pm\u201311pm",
     "window_hours": 6,
-    "as_of": "2026-09-05T19:48:07.287623+00:00"
+    "as_of": "2026-09-06T02:25:00.191317+00:00"
   },
   "air_quality": {
-    "aqi": 35,
+    "aqi": 23,
     "category": "Good",
     "show": false,
-    "as_of": "2026-09-05T19:48:07.287623+00:00"
+    "as_of": "2026-09-06T02:25:00.191317+00:00"
   }
 }
