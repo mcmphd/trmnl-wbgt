@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 73.0,
+    "wbgt_f": 78.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-09-11T10:25:24.209492+00:00"
+    "as_of": "2026-09-11T15:41:32.228422+00:00"
   },
   "rain": {
-    "max_pop_pct": 11,
-    "action": "none",
-    "window_label": null,
+    "max_pop_pct": 31,
+    "action": "umbrella",
+    "window_label": "2pm\u20135pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-09-11T10:25:24.209492+00:00"
+    "as_of": "2026-09-11T15:41:32.228422+00:00"
   },
   "sun": {
     "uv_index": 4.0,
     "label": "SPF 30+, hat",
     "show": true,
-    "as_of": "2026-09-11T10:25:24.209492+00:00"
+    "as_of": "2026-09-11T15:41:32.228422+00:00"
   },
-  "generated_at": "2026-09-11T10:25:24.209492+00:00",
+  "generated_at": "2026-09-11T15:41:32.228422+00:00",
   "wind": {
-    "sustained_mph": 6.0,
-    "gust_mph": 9.0,
+    "sustained_mph": 8.0,
+    "gust_mph": 13.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-09-11T10:25:24.209492+00:00"
+    "as_of": "2026-09-11T15:41:32.228422+00:00"
   },
   "feels_like": {
-    "low_f": 76.0,
+    "low_f": 77.0,
     "high_f": 92.0,
-    "as_of": "2026-09-11T10:25:24.209492+00:00"
+    "as_of": "2026-09-11T15:41:32.228422+00:00"
   },
   "air": {
     "high_f": 87.0,
     "low_f": 70.0,
-    "as_of": "2026-09-11T10:25:24.209492+00:00"
+    "as_of": "2026-09-11T15:41:32.228422+00:00"
   },
-  "verdict": "SPF 30+, hat.",
+  "verdict": "Bring an umbrella (2pm\u20135pm); SPF 30+, hat.",
   "storm": {
     "expected": false,
-    "max_pot_pct": 4,
+    "max_pot_pct": 25,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-09-11T10:25:24.209492+00:00"
+    "as_of": "2026-09-11T15:41:32.228422+00:00"
   },
   "air_quality": {
-    "aqi": 53,
-    "category": "Moderate",
+    "aqi": 46,
+    "category": "Good",
     "show": false,
-    "as_of": "2026-09-11T10:25:24.209492+00:00"
+    "as_of": "2026-09-11T15:41:32.228422+00:00"
   }
 }
