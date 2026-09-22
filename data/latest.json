@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 70.0,
+    "wbgt_f": 73.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-09-22T10:46:28.257757+00:00"
+    "as_of": "2026-09-22T16:05:42.457280+00:00"
   },
   "rain": {
-    "max_pop_pct": 77,
+    "max_pop_pct": 80,
     "action": "umbrella",
-    "window_label": "6am\u20131pm",
+    "window_label": "11am\u20137pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-09-22T10:46:28.257757+00:00"
+    "as_of": "2026-09-22T16:05:42.457280+00:00"
   },
   "sun": {
     "uv_index": 2.0,
     "label": "No protection needed",
     "show": false,
-    "as_of": "2026-09-22T10:46:28.257757+00:00"
+    "as_of": "2026-09-22T16:05:42.457280+00:00"
   },
-  "generated_at": "2026-09-22T10:46:28.257757+00:00",
+  "generated_at": "2026-09-22T16:05:42.457280+00:00",
   "wind": {
-    "sustained_mph": 9.0,
-    "gust_mph": 15.0,
+    "sustained_mph": 12.0,
+    "gust_mph": 21.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-09-22T10:46:28.257757+00:00"
+    "as_of": "2026-09-22T16:05:42.457280+00:00"
   },
   "feels_like": {
-    "low_f": 65.0,
-    "high_f": 75.0,
-    "as_of": "2026-09-22T10:46:28.257757+00:00"
+    "low_f": 64.0,
+    "high_f": 73.0,
+    "as_of": "2026-09-22T16:05:42.457280+00:00"
   },
   "air": {
     "high_f": 74.0,
     "low_f": 61.0,
-    "as_of": "2026-09-22T10:46:28.257757+00:00"
+    "as_of": "2026-09-22T16:05:42.457280+00:00"
   },
-  "verdict": "Bring an umbrella (6am\u20131pm).",
+  "verdict": "Thunderstorms expected (2pm\u20138pm) \u2014 head indoors; Bring an umbrella (11am\u20137pm).",
   "storm": {
-    "expected": false,
-    "max_pot_pct": 27,
-    "window_label": null,
+    "expected": true,
+    "max_pot_pct": 38,
+    "window_label": "2pm\u20138pm",
     "window_hours": 6,
-    "as_of": "2026-09-22T10:46:28.257757+00:00"
+    "as_of": "2026-09-22T16:05:42.457280+00:00"
   },
   "air_quality": {
-    "aqi": 25,
+    "aqi": 31,
     "category": "Good",
     "show": false,
-    "as_of": "2026-09-22T10:46:28.257757+00:00"
+    "as_of": "2026-09-22T16:05:42.457280+00:00"
   }
 }
