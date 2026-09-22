@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 72.0,
+    "wbgt_f": 70.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-09-22T02:51:09.046515+00:00"
+    "as_of": "2026-09-22T10:46:28.257757+00:00"
   },
   "rain": {
-    "max_pop_pct": 63,
+    "max_pop_pct": 77,
     "action": "umbrella",
-    "window_label": "10pm\u20136am",
+    "window_label": "6am\u20131pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-09-22T02:51:09.046515+00:00"
+    "as_of": "2026-09-22T10:46:28.257757+00:00"
   },
   "sun": {
     "uv_index": 2.0,
     "label": "No protection needed",
     "show": false,
-    "as_of": "2026-09-22T02:51:09.046515+00:00"
+    "as_of": "2026-09-22T10:46:28.257757+00:00"
   },
-  "generated_at": "2026-09-22T02:51:09.046515+00:00",
+  "generated_at": "2026-09-22T10:46:28.257757+00:00",
   "wind": {
-    "sustained_mph": 6.0,
-    "gust_mph": 10.0,
+    "sustained_mph": 9.0,
+    "gust_mph": 15.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-09-22T02:51:09.046515+00:00"
+    "as_of": "2026-09-22T10:46:28.257757+00:00"
   },
   "feels_like": {
-    "low_f": 71.0,
-    "high_f": 71.0,
-    "as_of": "2026-09-22T02:51:09.046515+00:00"
+    "low_f": 65.0,
+    "high_f": 75.0,
+    "as_of": "2026-09-22T10:46:28.257757+00:00"
   },
   "air": {
-    "high_f": 82.0,
-    "low_f": 67.0,
-    "as_of": "2026-09-22T02:51:09.046515+00:00"
+    "high_f": 74.0,
+    "low_f": 61.0,
+    "as_of": "2026-09-22T10:46:28.257757+00:00"
   },
-  "verdict": "Bring an umbrella (10pm\u20136am).",
+  "verdict": "Bring an umbrella (6am\u20131pm).",
   "storm": {
     "expected": false,
-    "max_pot_pct": 14,
+    "max_pot_pct": 27,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-09-22T02:51:09.046515+00:00"
+    "as_of": "2026-09-22T10:46:28.257757+00:00"
   },
   "air_quality": {
-    "aqi": 26,
+    "aqi": 25,
     "category": "Good",
     "show": false,
-    "as_of": "2026-09-22T02:51:09.046515+00:00"
+    "as_of": "2026-09-22T10:46:28.257757+00:00"
   }
 }
