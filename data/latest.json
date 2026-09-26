@@ -1,56 +1,56 @@
 {
   "work": {
-    "wbgt_f": 62.0,
+    "wbgt_f": 66.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-09-26T15:32:39.518567+00:00"
+    "as_of": "2026-09-26T20:31:35.523964+00:00"
   },
   "rain": {
-    "max_pop_pct": 18,
-    "action": "none",
-    "window_label": null,
+    "max_pop_pct": 39,
+    "action": "raincoat",
+    "window_label": "8pm\u201310pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-09-26T15:32:39.518567+00:00"
+    "as_of": "2026-09-26T20:31:35.523964+00:00"
   },
   "sun": {
     "uv_index": 6.0,
     "label": "SPF 30+, hat, seek midday shade",
     "show": true,
-    "as_of": "2026-09-26T15:32:39.518567+00:00"
+    "as_of": "2026-09-26T20:31:35.523964+00:00"
   },
-  "generated_at": "2026-09-26T15:32:39.518567+00:00",
+  "generated_at": "2026-09-26T20:31:35.523964+00:00",
   "wind": {
-    "sustained_mph": 17.0,
-    "gust_mph": 30.0,
+    "sustained_mph": 16.0,
+    "gust_mph": 29.0,
     "windy": true,
     "window_hours": 6,
-    "as_of": "2026-09-26T15:32:39.518567+00:00"
+    "as_of": "2026-09-26T20:31:35.523964+00:00"
   },
   "feels_like": {
-    "low_f": 57.0,
+    "low_f": 59.0,
     "high_f": 65.0,
-    "as_of": "2026-09-26T15:32:39.518567+00:00"
+    "as_of": "2026-09-26T20:31:35.523964+00:00"
   },
   "air": {
-    "high_f": 71.0,
+    "high_f": 72.0,
     "low_f": 54.0,
-    "as_of": "2026-09-26T15:32:39.518567+00:00"
+    "as_of": "2026-09-26T20:31:35.523964+00:00"
   },
-  "verdict": "Windy; SPF 30+, hat, seek midday shade.",
+  "verdict": "Bring a raincoat (8pm\u201310pm); windy.",
   "storm": {
     "expected": false,
-    "max_pot_pct": 2,
+    "max_pot_pct": 5,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-09-26T15:32:39.518567+00:00"
+    "as_of": "2026-09-26T20:31:35.523964+00:00"
   },
   "air_quality": {
-    "aqi": 30,
+    "aqi": 35,
     "category": "Good",
     "show": false,
-    "as_of": "2026-09-26T15:32:39.518567+00:00"
+    "as_of": "2026-09-26T20:31:35.523964+00:00"
   }
 }
