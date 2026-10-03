@@ -1,51 +1,51 @@
 {
   "work": {
-    "wbgt_f": 72.0,
+    "wbgt_f": 67.0,
     "flag": "white",
     "label": "Work freely",
     "minutes_per_hour": 60,
     "reported": true,
-    "as_of": "2026-10-03T03:20:48.079148+00:00"
+    "as_of": "2026-10-03T10:56:56.799965+00:00"
   },
   "rain": {
-    "max_pop_pct": 33,
+    "max_pop_pct": 57,
     "action": "umbrella",
-    "window_label": "5am\u20136am",
+    "window_label": "7am\u20131pm",
     "frozen_only": false,
     "window_hours": 6,
-    "as_of": "2026-10-03T03:20:48.079148+00:00"
+    "as_of": "2026-10-03T10:56:56.799965+00:00"
   },
   "sun": {
     "uv_index": 2.0,
     "label": "No protection needed",
     "show": false,
-    "as_of": "2026-10-03T03:20:48.079148+00:00"
+    "as_of": "2026-10-03T10:56:56.799965+00:00"
   },
-  "generated_at": "2026-10-03T03:20:48.079148+00:00",
+  "generated_at": "2026-10-03T10:56:56.799965+00:00",
   "wind": {
-    "sustained_mph": 9.0,
-    "gust_mph": 16.0,
+    "sustained_mph": 13.0,
+    "gust_mph": 17.0,
     "windy": false,
     "window_hours": 6,
-    "as_of": "2026-10-03T03:20:48.079148+00:00"
+    "as_of": "2026-10-03T10:56:56.799965+00:00"
   },
   "feels_like": {
-    "low_f": 76.0,
-    "high_f": 76.0,
-    "as_of": "2026-10-03T03:20:48.079148+00:00"
+    "low_f": 59.0,
+    "high_f": 66.0,
+    "as_of": "2026-10-03T10:56:56.799965+00:00"
   },
   "air": {
-    "high_f": 90.0,
-    "low_f": 63.0,
-    "as_of": "2026-10-03T03:20:48.079148+00:00"
+    "high_f": 66.0,
+    "low_f": 59.0,
+    "as_of": "2026-10-03T10:56:56.799965+00:00"
   },
-  "verdict": "Bring an umbrella (5am\u20136am).",
+  "verdict": "Bring an umbrella (7am\u20131pm).",
   "storm": {
     "expected": false,
-    "max_pot_pct": 0,
+    "max_pot_pct": 7,
     "window_label": null,
     "window_hours": 6,
-    "as_of": "2026-10-03T03:20:48.079148+00:00"
+    "as_of": "2026-10-03T10:56:56.799965+00:00"
   },
   "air_quality": {
     "aqi": 45,
